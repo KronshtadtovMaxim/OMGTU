@@ -38,6 +38,7 @@ class Programm
         verts.Remove(graphs[0].v1);
         while(verts2.Count != a)
         {
+            int abh = 0;
             int j = -1;
             int minr = -1;
             for (int i = 0; i < graphs.Count; i++)
@@ -48,6 +49,7 @@ class Programm
                     {
                         minr = graphs[i].weight;
                         j = i;
+                        abh =1;
                     }
                     else 
                     {
@@ -55,19 +57,11 @@ class Programm
                         {
                             minr = graphs[i].weight;
                             j = i;
+                            abh = 1;
                         }
                     }
                 }
             }
-            if (j != -1)
-            {
-                verts2.Add(graphs[j].v1);
-                verts.Remove(graphs[j].v1);
-                graphss.Add(graphs[j]);
-                graphs.Remove(graphs[j]);
-            }
-            j = -1;
-            minr = -1;
             for (int i = 0; i < graphs.Count; i++)
             {
                 if (verts2.Contains(graphs[i].v1) && !verts2.Contains(graphs[i].v2))
@@ -76,6 +70,7 @@ class Programm
                     {
                         minr = graphs[i].weight;
                         j = i;
+                        abh = 2;
                     }
                     else
                     {
@@ -83,18 +78,26 @@ class Programm
                         {
                             minr = graphs[i].weight;
                             j = i;
+                            abh = 2;
                         }
                     }
                 }
             }
             if (j != -1)
             {
+                if(abh == 2){
                 verts2.Add(graphs[j].v2);
                 verts.Remove(graphs[j].v2);
                 graphss.Add(graphs[j]);
                 graphs.Remove(graphs[j]);
+                }
+                if(abh == 1){
+                verts2.Add(graphs[j].v1);
+                verts.Remove(graphs[j].v1);
+                graphss.Add(graphs[j]);
+                graphs.Remove(graphs[j]);
+                }
             }
-            Console.WriteLine(verts2.Count);
         }
         int min = 0;
         foreach(Graph graph in  graphss) { min += graph.weight; }
