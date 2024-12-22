@@ -94,40 +94,44 @@ fig.colorbar(surf, shrink=0.5, aspect=5)
 
 # Отображаем график
 plt.show()
-# Дополнение: Создаем сетку 2x2 и добавляем уже созданные графики
-fig, axs = plt.subplots(2, 2, figsize=(14, 10))
+styles = ['fivethirtyeight', 'ggplot', 'bmh']
+for style in styles:
+    plt.style.use(style)
+    # Дополнение: Создаем сетку 2x2 и добавляем уже созданные графики
+    fig, axs = plt.subplots(2, 2, figsize=(14, 10))
 
-axs[0,0].plot(x, func)
-axs[0,0].set_xlabel('x', fontsize=12)
-axs[0,0].set_ylabel('y', fontsize=12)
-axs[0,0].set_title("F = 2/(sin(x)+4)")
-axs[0,0].legend()
-
-
-axs[0, 1].scatter(x, func, marker='.', color=(0.2, 0.4, 0.6), label='Scatter')
-axs[0, 1].set_title("F = 2/(sin(x)+4)")
-axs[0, 1].set_xlabel('x')
-axs[0, 1].set_ylabel('y')
-axs[0, 1].grid(color='r', linestyle='--', linewidth=0.5, alpha=0.5)
-axs[0, 1].legend()
+    axs[0,0].plot(x, func)
+    axs[0,0].set_xlabel('x', fontsize=12)
+    axs[0,0].set_ylabel('y', fontsize=12)
+    axs[0,0].set_title("F = 2/(sin(x)+4)")
+    axs[0,0].legend()
 
 
-axs[1,0].pie(counts, labels=dict.keys(), colors=['red', 'blue', 'green', 'orange'])
-axs[1,0].set_title('Распределение чисел от 1 до 4 в выборке')
-
-ax4 = fig.add_subplot(2, 2, 4, projection='3d')
-surf = ax4.plot_surface(x_3d,y_3d, z_3d, cmap='viridis', linewidth=0, antialiased=False)
-ax4.contour(x, y, z, zdir='z', offset=-10, cmap='Reds')
-ax4.set_xlabel('X')
-ax4.set_ylabel('Y')
-ax4.set_zlabel('Z')
-ax4.set_title('График функции (x - 4)^2 + (y - 2)^2')
-fig.colorbar(surf, shrink=0.5, aspect=5, ax=ax4)
+    axs[0, 1].scatter(x, func, marker='.', color=(0.2, 0.4, 0.6), label='Scatter')
+    axs[0, 1].set_title("F = 2/(sin(x)+4)")
+    axs[0, 1].set_xlabel('x')
+    axs[0, 1].set_ylabel('y')
+    axs[0, 1].grid(color='r', linestyle='--', linewidth=0.5, alpha=0.5)
+    axs[0, 1].legend()
 
 
-# Устанавливаем общий заголовок для всех графиков
-fig.suptitle('Сетка из 4 графиков', fontsize=16)
+    axs[1,0].pie(counts, labels=dict.keys(), colors=['red', 'blue', 'green', 'orange'])
+    axs[1,0].set_title('Распределение чисел от 1 до 4 в выборке')
 
-# Отображаем графики
-plt.tight_layout()
-plt.show()
+    ax4 = fig.add_subplot(2, 2, 4, projection='3d')
+    surf = ax4.plot_surface(x_3d,y_3d, z_3d, cmap='viridis', linewidth=0, antialiased=False)
+    ax4.contour(x, y, z, zdir='z', offset=-10, cmap='Reds')
+    ax4.set_xlabel('X')
+    ax4.set_ylabel('Y')
+    ax4.set_zlabel('Z')
+    ax4.set_title('График функции (x - 4)^2 + (y - 2)^2')
+    fig.colorbar(surf, shrink=0.5, aspect=5, ax=ax4)
+
+
+    # Устанавливаем общий заголовок для всех графиков
+    fig.suptitle('Сетка из 4 графиков', fontsize=16)
+
+    # Отображаем графики
+    plt.tight_layout()
+    plt.show()
+
