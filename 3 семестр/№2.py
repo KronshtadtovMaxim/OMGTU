@@ -1,23 +1,30 @@
 import scipy
 import sympy as sp
-from scipy import special
 from scipy import integrate
 import numpy as np
 from scipy.optimize import minimize, NonlinearConstraint
-x = sp.Symbol('x')
-y = 2/(sp.sin(x) + 4)
-derivative = sp.diff(y, x)
-derivative2 = sp.diff(y,x, 2)
+import scipy.misc as sc
+
+def f(x):
+    return 2 / (sp.sin(x) + 4)
+derivative = sc.derivative(f, 2.0, dx=1e-6)
+derivative2 = sc.derivative(f, 2.0, dx=1e-6, n=2)
 print("Производная функции y по x: ", derivative)
-print("Второя производная функции y по x: ", derivative2)
+print("Вторая производная функции y по x: ", derivative2)
+print()
+
+x = sp.symbols('x')
+y = 2/(sp.sin(x)+4)
+der = sp.diff(y,x)
+print("Символьное представление производной: ", der)
 print()
 y1 = lambda x: 2/(sp.sin(x)+4)
 a = scipy.integrate.quad(y1, 3, 6)
 print("Значение определенного интеграла y1 в пределах от 3 до 6: ", a[0])
 
 print()
-integral = sp.integrate(y, x)
-print("Неопределенный интеграл от функции y: ",integral)
+abc = sp.integrate(y,x)
+print(f"Неопределенный интеграл от функции: {abc} + C")
 
 print()
 def func(x):
