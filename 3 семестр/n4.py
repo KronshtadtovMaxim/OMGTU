@@ -30,7 +30,6 @@ ax2 = plt.show()
 
 a = numpy.random.randint(0, 100, 100)
 b = numpy.random.normal(50, 100/6, 100) #normal
-b = numpy.clip(numpy.round(b), 0, 100).astype(int) #округление
 afg = plt.hist(a, bins=50, color='skyblue', edgecolor='black', alpha=0.7)
 afg = plt.title('Гистограмма равномерного распределения')
 afg = plt.xlabel('Значение')
