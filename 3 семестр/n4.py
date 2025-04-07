@@ -75,7 +75,6 @@ ax4.set_ylabel('Y')
 ax4.set_zlabel('Z')
 ax4.set_title('График функции (x - 4)^2 + (y - 2)^2')
 
-fig.colorbar(surf, shrink=0.5, aspect=5)
 
 plt.show()
 styles = ['fivethirtyeight', 'ggplot', 'bmh']
