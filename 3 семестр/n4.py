@@ -19,14 +19,13 @@ ax1 = plt.plot(x, func)
 ax1 = plt.xlabel('x', fontsize=12)
 ax1 = plt.ylabel('y', fontsize=12)
 ax1 = plt.title("F = 2/(sin(x)+4)")
-ax1 = plt.legend()
 ax1 = plt.show()
 
 ax2 = plt.scatter(x, func, marker='.', color=(0.2, 0.4, 0.6))
 ax2 = plt.title("F = 2/(sin(x)+4)")
 ax2 = plt.xlabel('x')
 ax2 = plt.ylabel('y')
-ax2 = plt.grid(color='r', linestyle='--', linewidth=0.5, alpha=0.5) #цвет, тип, ширина, прозрачность
+ax2 = plt.grid(color='r', linestyle='--', linewidth=0.5, alpha=0.5)
 ax2 = plt.show()
 
 a = numpy.random.randint(0, 100, 100)
@@ -64,47 +63,30 @@ y_3d = numpy.linspace(-10, 10, 100)
 x_3d, y_3d = numpy.meshgrid(x_3d, y_3d)
 z_3d = (x_3d - 4) ** 2 + (y_3d - 2) ** 2
 
-# Вычисляем значения функции z = (x - 4)^2 + (y - 2)^2
 z = (x_3d - 4)**2 + (y_3d - 2)**2
 
-# Создаем трехмерный график
 fig = plt.figure()
-ax4 = fig.add_subplot(111, projection='3d') #Добавляет трехмерную ось к фигуре. Параметры 111 указывают на расположение подграфика (1 строка, 1 столбец, первый подграфик), а projection='3d' указывает на трехмерную проекцию.
+ax4 = fig.add_subplot(projection='3d')
 
-# Строим поверхность
-surf = ax4.plot_surface(x_3d, y_3d, z_3d, cmap='viridis', linewidth=0, antialiased=False) #cmap='viridis': Устанавливает цветовую карту для графика. viridis — это одна из предопределенных цветовых карт в Matplotlib.
+surf = ax4.plot_surface(x_3d, y_3d, z_3d, cmap='viridis', antialiased=False) #cmap='viridis': Устанавливает цветовую карту для графика. viridis — это одна из предопределенных цветовых карт в Matplotlib.
 
-#linewidth=0: Устанавливает ширину линии на 0, чтобы линии не отображались на поверхности.
-
-#antialiased=False: Отключает сглаживание линий, что может ускорить отрисовку.
-
-# Устанавливаем цвет линии на графике
-ax4.contour(x_3d, y_3d, z_3d, zdir='z', offset=-10, cmap='Reds') #zdir='z': Указывает, что контурные линии должны быть нарисованы в направлении оси z.
-
-#=-10: Устанавливает смещение контурных линий по оси z на -10.
-
-# Настройка осей и заголовка
 ax4.set_xlabel('X')
 ax4.set_ylabel('Y')
 ax4.set_zlabel('Z')
 ax4.set_title('График функции (x - 4)^2 + (y - 2)^2')
 
-# Добавляем цветовую шкалу
 fig.colorbar(surf, shrink=0.5, aspect=5)
 
-# Отображаем график
 plt.show()
 styles = ['fivethirtyeight', 'ggplot', 'bmh']
 for style in styles:
     plt.style.use(style)
-    # Дополнение: Создаем сетку 2x2 и добавляем уже созданные графики
     fig, axs = plt.subplots(2, 2, figsize=(14, 10))
 
     axs[0,0].plot(x, func)
     axs[0,0].set_xlabel('x', fontsize=12)
     axs[0,0].set_ylabel('y', fontsize=12)
     axs[0,0].set_title("F = 2/(sin(x)+4)")
-    axs[0,0].legend()
 
 
     axs[0, 1].scatter(x, func, marker='.', color=(0.2, 0.4, 0.6), label='Scatter')
@@ -128,10 +110,8 @@ for style in styles:
     fig.colorbar(surf, shrink=0.5, aspect=5, ax=ax4)
 
 
-    # Устанавливаем общий заголовок для всех графиков
     fig.suptitle('Сетка из 4 графиков', fontsize=16)
 
-    # Отображаем графики
     plt.tight_layout()
     plt.show()
 
